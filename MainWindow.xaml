@@ -4,14 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IMS_Modernized"
+        xmlns:viewModel="clr-namespace:IMS_Modernized.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="450" Width="800"
-        WindowStyle="None"
-        ResizeMode="NoResize"
+        Height="500" Width="1000" WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResizeWithGrip"
         Background="Transparent"
-        AllowsTransparency="True"
+        AllowsTransparency="False"
         >
-
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
 
 
     <Border Background="#272527"
@@ -29,30 +32,38 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Elysian"
+            <TextBlock Text="IMS"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"
                        FontSize="22"
-                       Margin="20,0,0,0"/>
+                       Margin="0,0,0,0"/>
 
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Home"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButton}"/>
-                <RadioButton Content="Home"
+                             Style="{StaticResource MenuButton}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="Views"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButton}"/>
-                <RadioButton Content="Home"
+                <RadioButton Content="Reports"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButton}"/>
+                             Style="{StaticResource MenuButton}"
+                             Command="{Binding ReportsViewCommand}"/>
             </StackPanel>
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+            
         </Grid>
         
         
